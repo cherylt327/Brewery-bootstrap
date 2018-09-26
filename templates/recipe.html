@@ -53,15 +53,20 @@
             {% for r in recipe %}
 
                 {% for i in inventory %}
-                    {% if r.id == i.ingredient_id %}
+                    {% if r.ingredient_id == i.ingredient_id %}
                          
 
                     {% set lbs = i.ounces|int // 16 %}
                     {% set oz = i.ounces|int % 16 %}
-                    {% if r.ounces > i.ounces or r.grams > i.grams %}
+                    {% if r.ounces > i.ounces and r.grams == 0 %}
                         {% set order_lb = (r.ounces-i.ounces) // 16 %}
                         {% set order_oz = (r.ounces-i.ounces) % 16 %}
                         {% set order_gr = r.grams-i.grams %}
+                    {% elif r.ounces == 0 and r.grams > i.grams %}
+                        {% set order_lb = 0 %}    
+                        {% set order_oz = 0 %}
+                        {% set order_gr = r.grams-i.grams %}
+
                     {% else %}    
                         {% set order_lb = 0 %}
                         {% set order_oz = 0 %}
