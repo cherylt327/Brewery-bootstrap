@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="heading"><h1>Recipe</h1></div>
+
+    <table>
+        <tr>
+            <th>Ingredient</th>
+            <th>Lbs</th>
+            <th>Ounces</th>
+            <th>Grams</th>
+        </tr>
+
+  
+            {% for r in recipe %}
+
+            {% set lbs = r.ounces|int // 16 %}
+            {% set oz = r.ounces|int % 16 %}
+             
+            <tr>
+                <td>{{r.ri.name}}</td>
+                <td>{{lbs}}</td>
+                <td>{{oz}}</td>
+                <td>{{r.grams}}</td>
+            </tr>  
+           
+            {% endfor %}
+    
+           <form method='post'> 
+               
+            <input type="submit" value="Brew">
+               
+
+           </form>
+    
+        </table>        
+<hr>
+    <div class="heading"><h1>Inventory / Amount to Order </h1></div>
+
+    <table>
+        <tr>
+            <th>Ingredient</th>
+            <th>Lbs</th>
+            <th>Ounces</th>
+            <th>Grams</th>
+            <th></th>
+            <th>Order Lbs</th>
+            <th>Order Ounces</th>
+            <th>Order Grams</th>
+        </tr>
+
+  
+            {% for r in recipe %}
+
+                {% for i in inventory %}
+                    {% if r.id == i.ingredient_id %}
+                         
+
+                    {% set lbs = i.ounces|int // 16 %}
+                    {% set oz = i.ounces|int % 16 %}
+                    {% if r.ounces > i.ounces or r.grams > i.grams %}
+                        {% set order_lb = (r.ounces-i.ounces) // 16 %}
+                        {% set order_oz = (r.ounces-i.ounces) % 16 %}
+                        {% set order_gr = r.grams-i.grams %}
+                    {% else %}    
+                        {% set order_lb = 0 %}
+                        {% set order_oz = 0 %}
+                        {% set order_gr = 0 %}
+                    {% endif %} 
+
+
+                        <tr>
+                            <td>{{r.ri.name}}</td>
+                             <td>{{lbs}}</td>
+                             <td>{{oz}}</td>
+                             <td>{{i.grams}}</td>
+                             <td></td>
+                             <td>{{order_lb}}</td>
+                             <td>{{order_oz}}</td>
+                             <td>{{order_gr}}</td>
+                        </tr>               
+                       
+                    {% endif %}
+            {% endfor%}
+            {% endfor %}
+    </table>  
+
+    
+
+
+
+{% endblock %}

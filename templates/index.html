@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="heading"><h1>Current Inventory</h1></div>
+
+    <table>
+        <tr>
+            <th>Ingredient</th>
+            <th>Lbs</th>
+            <th>Ounces</th>
+            <th>Grams</th>
+        </tr>
+
+  
+            {% for inv in inventory %}
+
+            {% set lbs = inv.ounces|int // 16 %}
+            {% set oz = inv.ounces|int % 16 %}
+             
+            <tr>
+                <td>{{inv.ingredients.name}}</td>
+                <td>{{lbs}}</td>
+                <td>{{oz}}</td>
+                <td>{{inv.grams}}</td>
+            </tr>  
+           
+            {% endfor %}
+    </table>        
+
+    <div class="heading"><h1>Recipes</h1></div>   
+    
+        <ul>
+            {% for r in recipes %}
+             <li><a href="./recipe?id={{r.id}}">{{r.name}}</a></li>
+            {% endfor %}
+
+        </ul>
+
+
+
+
+
+{% endblock %}

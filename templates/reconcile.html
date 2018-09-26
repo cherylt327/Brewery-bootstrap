@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="heading"><h1>Reconcile Inventory</h1></div>
+
+    <table>
+        <tr>
+            <th>Ingredient</th>
+            <th>Lbs</th>
+            <th>Ounces</th>
+            <th>Grams</th>
+        </tr>
+
+  
+            {% for inv in inventory %}
+
+            {% set lbs = inv.ounces|int // 16 %}
+            {% set oz = inv.ounces|int % 16 %}
+             
+            <tr>
+                <td class="border">{{inv.ingredients.name}}</td>
+                <td class="border">{{lbs}}</td>
+                <td class="border">{{oz}}</td>
+                <td class="border">{{inv.grams}}</td>
+                <form action="/reconcile" method= "post">
+                    <td class="border">
+                        <label for="Lbs">Lbs</label>
+                            <input name="Lbs" type="text"  value = "{{lbs}}">
+                    </td>
+                    <td class="border">
+                        <label for="Ounces">Ounces</label>
+                            <input name="Ounces" type="text" value = "{{oz}}">
+                    </td>
+                    <td class="border">
+                        <label for="Grams">Grams</label>
+                            <input name="Grams" type="text" value = "{{inv.grams}}">
+                    </td>
+                    <td> 
+                        <input type = "hidden" name = "ID" value = "{{inv.id}}">
+                        <input type = "submit" value = "Update" name = "Update">
+                    </td>
+
+
+
+                </form>
+            </tr>  
+           
+            {% endfor %}
+    </table>        
+
+
+
+
+
+
+    {% endblock %}

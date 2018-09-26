@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+    <style>
+        .error{ 
+            color: red;
+        }
+    </style>
+    <title>{{title}}</title>
+</head>
+<body>
+    <style>
+        th { 
+            padding: 15px;
+            margin: 0px;
+            border: solid 1px black;
+            }
+        td { 
+            padding: 15px;
+            margin: 0px;
+            border: solid 1px black;
+            }
+    </style>
+    
+    <a href="./">Home</a>
+    <a href="./addinv">Add Inventory</a>
+    <a href="./reconcile">Recocncile Inventory</a>
+    {% block content %}
+    {% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="heading"><h1>Add Inventory</h1></div>
+
+    <table>
+        <tr>
+            <th>Ingredient</th>
+            <th>Lbs</th>
+            <th>Ounces</th>
+            <th>Grams</th>
+        </tr>
+
+            <form action="/addinv" method= "post">
+            {% for inv in inventory %}
+
+            {% set lbs = inv.ounces|int // 16 %}
+            {% set oz = inv.ounces|int % 16 %}
+             
+            <tr>
+                <td>{{inv.ingredients.name}}</td>
+                
+                <td>
+                        <label for="Lbs">Lbs</label>
+                            <input name="Lbs" type="text"  value = "0">
+                    </td>
+                    <td>
+                        <label for="Ounces">Ounces</label>
+                            <input name="Ounces" type="text" value = "0">
+                    </td>
+                    <td>
+                        <label for="Grams">Grams</label>
+                            <input name="Grams" type="text" value = "0">
+                    </td>
+                    
+                        <input type = "hidden" name = "ID" value = "{{inv.id}}">
+                      
+
+
+
+
+            </tr>  
+        
+           
+            {% endfor %}
+            <tr>
+                <input type= "submit" value = "Add Inventory" name = "Add">
+            </tr>
+
+
+        </form>
+
+
+
+    </table>        
+
+
+
+
+
+
+    {% endblock %}
