@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>57/70 Inventory</title> 
+     <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='bootstrap/dist/css/bootstrap.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='styles/custom.min.css')}}">
+    <script src="{{url_for('static',filename='js/jquery.js')}}"></script>
+    <script src="{{url_for('static',filename='js/popper.min.js')}}"></script>
+    <script src="{{url_for('static',filename='js/bootstrap.js')}}"></script>
+    <style>
+        .error{ 
+            color: red;
+        }
+        .navbar-nav { 
+            display: inline-block;
+        }
+        .navbar-nav>li{
+            display: inline-block;
+        }
+
+    </style>
+    <title>{{title}}</title>
+</head>
+<body>
+    <!--<style>
+        th { 
+            padding: 15px;
+            margin: 0px;
+            border: solid 1px black;
+            }
+        td { 
+            padding: 15px;
+            margin: 0px;
+            border: solid 1px black;
+            }
+    </style>-->
+    <nav class="navbar navbar-expand-lg navbar-inverse py-lg-4" id="mainNav"> 
+        <div class="container"> 
+            <div id="navbarResponsive">
+                <ul class="nav navbar-nav mx-auto"> 
+                <li class="active nav-item px-lg-4">
+                    <a class="nav-link text-uppercase text-expanded" href="./">Home</a>
+                </li>
+                <li class="nav-item px-lg-4">
+                    <a class="nav-link text-uppercase text-expanded" href="./addinv">Add</a>
+                </li>
+                <li class="nav-item px-lg-4">
+                    <a class="nav-link text-uppercase text-expanded" href="./reconcile">Reconcile</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    {% block content %}
+    {% endblock %}
+
+</body>
+</html>

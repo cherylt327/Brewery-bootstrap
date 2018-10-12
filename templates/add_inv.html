@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <div class="container">
     <div class="heading"><h1>Add Inventory</h1></div>
+ <form action="/addinv" method= "post">
 
-    <table>
+    <table class="table table-striped table-bordered table-condensed shadow p-3 mb-5 table-curved">
         <tr>
             <th>Ingredient</th>
             <th>Lbs</th>
@@ -11,7 +13,6 @@
             <th>Grams</th>
         </tr>
 
-            <form action="/addinv" method= "post">
             {% for inv in inventory %}
 
             {% set lbs = inv.ounces|int // 16 %}
@@ -21,39 +22,28 @@
                 <td>{{inv.ingredients.name}}</td>
                 
                 <td>
-                        <label for="Lbs">Lbs</label>
-                            <input name="Lbs" type="text"  value = "0">
+                            <input class="form-control" name="Lbs" type="text" placeholder="0">
                     </td>
                     <td>
-                        <label for="Ounces">Ounces</label>
-                            <input name="Ounces" type="text" value = "0">
+                            <input class="form-control" name="Ounces" type="text" placeholder="0">
                     </td>
                     <td>
-                        <label for="Grams">Grams</label>
-                            <input name="Grams" type="text" value = "0">
+                            <input class="form-control" name="Grams" type="text" placeholder="0">
                     </td>
-                    
-                        <input type = "hidden" name = "ID" value = "{{inv.id}}">
-                      
-
-
-
+                    <input type = "hidden" name = "ID" value = "{{inv.id}}">
 
             </tr>  
-        
-           
             {% endfor %}
-            <tr>
-                <input type= "submit" value = "Add Inventory" name = "Add">
-            </tr>
+    </table>
+
+                <input class="btn btn-primary" type= "submit" value = "Add Inventory" name = "Add">
 
 
         </form>
 
 
 
-    </table>        
-
+    </div> 
 
 
 
